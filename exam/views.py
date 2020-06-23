@@ -63,7 +63,7 @@ def TestView(request):
             return Response(data = {"test_code" : f"test code invalid {test_code}" }, status=status.HTTP_400_BAD_REQUEST)
         
         request.user.profile.tests.add(test)
-        return Response(data= {"success": "registered for test"})
+        return Response(data= {"data": "success", "message" : "successfully registered for test"})
 
 @api_view(['GET', 'POST'])
 def ResponseView(request):

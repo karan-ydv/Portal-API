@@ -64,7 +64,7 @@ def RegistrationView(request):
         profile.save()
 
         data['response'] = "successfully registered new user"
-        data['student number'] = profile.student_number
+        data['studentNumber'] = profile.student_number
         data['email'] = profile.user.email
     else:
         data = serializer.errors
@@ -97,9 +97,11 @@ def AdminLoginView(request):
             token = jwt_encode_handler(payload)
             return Response(data = {"token" : token})
         else:
-            errors['authentication failed'] = 'unable to authenticate with given credentials'
+            errors['data'] = 'failed'
+            errors['message'] = 'unable to authenticate with given credentials'
     except:
-        errors['authentication failed'] = 'unable to authenticate with given credentials'
+            errors['data'] = 'failed'
+            errors['message'] = 'unable to authenticate with given credentials'
     return Response(data=errors,status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['POST'])
@@ -129,8 +131,10 @@ def StudentLoginView(request):
             token = jwt_encode_handler(payload)
             return Response(data = {"token" : token})
         else:
-            errors['authentication failed'] = 'unable to authenticate with given credentials'
+            errors['data'] = 'failed'
+            errors['message'] = 'unable to authenticate with given credentials'
     except:
-        errors['authentication failed'] = 'unable to authenticate with given credentials'
+            errors['data'] = 'failed'
+            errors['message'] = 'unable to authenticate with given credentials'
     return Response(data=errors,status=status.HTTP_400_BAD_REQUEST)  
     
