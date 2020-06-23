@@ -14,6 +14,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
     
     password2 = serializers.CharField(style={'input_type':  'password'}, write_only=True)
     first_name = serializers.CharField(required=True)
+    email  = serializer.CharField(required=True)
     student_number = serializers.IntegerField(max_value=1980000, min_value=1910000)
     branch = serializers.ChoiceField(choices = branches)
 
