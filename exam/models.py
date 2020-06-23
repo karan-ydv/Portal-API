@@ -23,7 +23,7 @@ options = (
 NUMBER_OF_PROBLEMS = 50
 
 class Question(models.Model):
-    statement = models.TextField(max_length=200, blank = False, default=None)
+    statement = models.TextField(blank = False, default=None)
     code = models.TextField(blank=True)
     A = models.CharField(max_length = 100, blank = False)
     B = models.CharField(max_length = 100, blank = False)
