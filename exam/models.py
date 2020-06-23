@@ -39,7 +39,8 @@ class Answer(models.Model):
     ans = models.CharField(
         max_length = 1,
         choices = options,
-        default = '1'
+        blank=False,
+        null=False
     )
     def __str__(self):
         return str(self.question.id)
