@@ -96,6 +96,10 @@ class Response(models.Model):
 
     test_code = models.IntegerField()
     score = models.IntegerField(default=0)
+    algo1 = models.TextField(blank=True)
+    algo2 = models.TextField(blank=True)
+    algo3 = models.TextField(blank=True)
+    algo4 = models.TextField(blank=True)
     def __str__(self):
         return self.student.user.username
 
