@@ -97,11 +97,20 @@ def ResponseView(request):
         try:
             qNo = data['questionNo']
             ans = data['correctOption']
-            assert ans in ['1', '2', '3' ,'4']
             qType = data['questionType']
+            label = "Q"+qNo
+            if qType != "5":
+                assert ans in ['1', '2', '3' ,'4']
+            else:
+                qset = Question.objects.filter(Type = "5")
+                print(qset)
+                for index, item in enumerate(qset):
+                    if str(item.id) == qNo:
+                        label = "algo"+str(index+1)
+                        break
+                print(label)
         except:
-            return Response(data={"invalid data"}, status=status.HTTP_400_BAD_REQUEST)
-        label = "Q"+qNo
+            return Response(data={"failed":"invalid data"}, status=status.HTTP_400_BAD_REQUEST)
         try:
             setattr(response, label, data['correctOption'])
             response.save()
