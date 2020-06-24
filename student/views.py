@@ -9,6 +9,7 @@ from rest_framework_jwt.settings import api_settings
 
 from django.contrib.auth.models import User
 from .models import Profile
+from exam.models import Test
 from .serializers import ProfileSerializer, RegistrationSerializer
 
 from django.contrib.auth import authenticate
@@ -62,6 +63,12 @@ def RegistrationView(request):
         profile.branch = serializer.validated_data['branch']
         profile.student_number = serializer.validated_data['student_number']
         profile.save()
+
+        try:
+            test = Test.objects.all()[0]
+            profile.tests.add(test)
+        except:
+            pass
 
         data['response'] = "successfully registered new user"
         data['studentNumber'] = profile.student_number
